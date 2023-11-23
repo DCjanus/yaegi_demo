@@ -1,0 +1,3 @@
+internal/symbol/*
+!internal/symbol/symbol.go
+output/
