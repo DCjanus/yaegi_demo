@@ -5,6 +5,7 @@ package rule
 
 import (
 	"net/http"
+	"slices"
 
 	"github.com/dcjanus/yaegi_demo/internal/helper"
 
@@ -20,6 +21,13 @@ func Handle(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 	w.Header().Set("Cache-Control", "no-cache")
+
+	// ref: https://github.com/DCjanus/yaegi_demo/issues/1
+	if slices.Equal[[]byte, byte]([]byte("application/json"), []byte(r.Header.Get("Content-Type"))) {
+		w.WriteHeader(http.StatusBadRequest)
+		w.Write([]byte("Content-Type should not be application/json\n"))
+		return
+	}
 
 	// this line show how to use internal package.
 	helper.UselessHelper(w, helper.UselessHeader)
