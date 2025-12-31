@@ -72,6 +72,9 @@ Code above is wrote by GitHub Copilot.
 3. 运行 `make generate` 重新生成 Yaegi 符号表。
 4. 在 `rule/rule.go` 中导入并调用。
 
+在底层，`yaegi extract` 会生成类似 `internal/symbol/github_com-dcjanus-yaegi_demo-internal-helper.go` 的文件。
+这些文件定义了引擎可加载的外部符号，只有注册过的符号才能在 `rule/rule.go` 里使用。
+
 示例（本仓库已存在）：
 
 ```go

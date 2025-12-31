@@ -72,6 +72,9 @@ To call host-compiled functions from the script:
 3. Run `make generate` to refresh Yaegi symbols.
 4. Import and call it from `rule/rule.go`.
 
+Under the hood, `yaegi extract` generates files like `internal/symbol/github_com-dcjanus-yaegi_demo-internal-helper.go`.
+These files define the external symbols the engine can load, and only registered symbols can be used in `rule/rule.go`.
+
 Example (already in this repo):
 
 ```go
