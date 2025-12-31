@@ -63,6 +63,25 @@ Edit `rule/rule.go` and save; the server response updates without restart.
 - `make generate`: regenerate Yaegi symbols
 - `make build`: build binary into `output/yaegi_demo`
 
+## Host Functions
+
+To call host-compiled functions from the script:
+
+1. Add a function to a host package (for example `internal/helper`).
+2. Register that package in `internal/symbol/symbol.go` via a `//go:generate yaegi extract <module path>` line.
+3. Run `make generate` to refresh Yaegi symbols.
+4. Import and call it from `rule/rule.go`.
+
+Example (already in this repo):
+
+```go
+// rule/rule.go
+import "github.com/dcjanus/yaegi_demo/internal/helper"
+
+// ...
+helper.UselessHelper(w, helper.UselessHeader)
+```
+
 ## Project Tree
 
 ```text
