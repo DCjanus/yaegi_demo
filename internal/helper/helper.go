@@ -1,5 +1,5 @@
 // Package helper provides helper functions for the application.
-// This package is for showing how to call host functions in interpreter.
+// This package shows how to call host functions from the interpreter.
 package helper
 
 import (
