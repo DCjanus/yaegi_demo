@@ -63,6 +63,28 @@ Code above is wrote by GitHub Copilot.
 - `make generate`：重新生成 Yaegi 符号表
 - `make build`：构建二进制到 `output/yaegi_demo`
 
+## 宿主机函数
+
+要在脚本中调用宿主机编译的函数：
+
+1. 在宿主包中新增函数（例如 `internal/helper`）。
+2. 在 `internal/symbol/symbol.go` 里添加 `//go:generate yaegi extract <模块路径>` 注册该包。
+3. 运行 `make generate` 重新生成 Yaegi 符号表。
+4. 在 `rule/rule.go` 中导入并调用。
+
+在底层，`yaegi extract` 会生成类似 `internal/symbol/github_com-dcjanus-yaegi_demo-internal-helper.go` 的文件。
+这些文件定义了引擎可加载的外部符号，只有注册过的符号才能在 `rule/rule.go` 里使用。
+
+示例（本仓库已存在）：
+
+```go
+// rule/rule.go
+import "github.com/dcjanus/yaegi_demo/internal/helper"
+
+// ...
+helper.UselessHelper(w, helper.UselessHeader)
+```
+
 ## 项目结构
 
 ```text
