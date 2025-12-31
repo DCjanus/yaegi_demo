@@ -2,7 +2,7 @@
 
 Demo project showing how to use [Yaegi](https://github.com/traefik/yaegi) to load and execute Go code at runtime.
 
-Read this in Chinese: [README.zh_CN.md](README.zh_CN.md)
+English | [中文](README.zh_CN.md)
 
 ## Overview
 

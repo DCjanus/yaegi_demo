@@ -2,6 +2,8 @@
 
 演示如何使用 [Yaegi](https://github.com/traefik/yaegi) 在运行时加载并执行 Go 代码。
 
+[English](README.md) | 中文
+
 ## 项目简介
 
 HTTP 处理逻辑位于 `rule/rule.go`，由 Yaegi 热加载。
