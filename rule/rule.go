@@ -1,11 +1,10 @@
-// Package rule is a package that contains a rule for the server.
-// this would not be build in the binary, but load from file system by yaegi at runtime.
-// Lucky, you can edit this file with whole code base, and benefit from the IDE's smart tips.
+// Package rule contains the server handler logic.
+// This file is not built into the binary; Yaegi loads it from disk at runtime.
+// You can edit it in-place and still benefit from IDE tooling.
 package rule
 
 import (
 	"net/http"
-	"slices"
 
 	"github.com/dcjanus/yaegi_demo/internal/helper"
 
@@ -13,7 +12,7 @@ import (
 )
 
 func Handle(w http.ResponseWriter, r *http.Request) {
-	// this line show how to use thrird party package.
+	// Demonstrate using a third-party package.
 	logrus.
 		WithField("url", r.URL.String()).
 		WithField("method", r.Method).
@@ -23,13 +22,13 @@ func Handle(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Cache-Control", "no-cache")
 
 	// ref: https://github.com/DCjanus/yaegi_demo/issues/1
-	if slices.Equal[[]byte, byte]([]byte("application/json"), []byte(r.Header.Get("Content-Type"))) {
+	if r.Header.Get("Content-Type") == "application/json" {
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte("Content-Type should not be application/json\n"))
 		return
 	}
 
-	// this line show how to use internal package.
+	// Demonstrate using an internal package.
 	helper.UselessHelper(w, helper.UselessHeader)
 
 	w.WriteHeader(http.StatusOK)
